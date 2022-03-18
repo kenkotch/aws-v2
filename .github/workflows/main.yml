@@ -15,7 +15,7 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   deploy:
-    # The type of runner that the job will run on
+  # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -29,11 +29,12 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-      - name: Install Modules
+      - name: Install modules
         run: npm ci
       - name: Build Application
         run: npm run build
-      - name: Deploy to S3
+      - name: Deploy to S#
         run: aws s3 sync ./build s3://${{ secrets.BUCKET_NAME }}
       - name: Create Cloudfront Invalidation
         run: aws cloudfront create-invalidation --distribution-id ${{ secrets.DISTRIBUTION_ID }} --paths "/*"
+
